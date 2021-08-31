@@ -1,4 +1,5 @@
 import json
+from os import lseek
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.keys import Keys
@@ -119,6 +120,7 @@ def alunosConectados(driver: WebDriver):
     return lista
 
 def chamada(driver: WebDriver):
+
     try:
         time.sleep(2)
         #BOTAO ABRIR CHAT
@@ -130,8 +132,7 @@ def chamada(driver: WebDriver):
         presentes = []
         for i in aluno:
             presentes.append(i.text)
-        print(presentes)
-        presentes.remove("Você")
+        presentes.remove('Você')
         time.sleep(3)
         botao[2].click()
     except:
@@ -141,14 +142,23 @@ def chamada(driver: WebDriver):
     return presentes
 
 def fazerChamada(driver: WebDriver):
-    avisoChamada(driver, "Iniciando chamada:")
+    text = "Iniciando chamada: Digite qualquer coisa para contar presenca!"
+    avisoChamada(driver, text)
     input("Digite qualquer tecla para terminar a chamada...")
     resp = chamada(driver)
     time.sleep(2)
-    avisoChamada(driver,"Chamada finalizada:")
+    avisoChamada(driver,"Chamada finalizada.")
     return resp
 
+def enviarCPA(driver: WebDriver, conectados: list, presentes: list,ausentes: list):
+    texto = ', '.join(conectados)
+    avisoChamada(driver,"Conectados: "+ texto)
+    texto = ', '.join(presentes)
+    avisoChamada(driver,"Presentes: "+ texto)
+    texto = ', '.join(ausentes)
+    avisoChamada(driver,"Ausentes: "+ texto)
 
+    return
 def setDriver():
     options = webdriver.ChromeOptions()
     options.add_argument("user-data-dir=selenium") 
@@ -175,6 +185,7 @@ def menu(driver: WebDriver,gmailId:str,passWord: str, meet: str ):
         print("3 - Alunos conectados")
         print("4 - Alunos presentes")
         print("5 - Alunos conectados ausentes")
+        print("6 - Enviar lista de alunos C.P.A")
         print("0 - Sair")
 
         op = int(input("Escolher:"))
@@ -207,8 +218,11 @@ def menu(driver: WebDriver,gmailId:str,passWord: str, meet: str ):
                 print(i)
             ausentes.clear()
             print("-"*25)
+        elif op == 6:
+            enviarCPA(driver,conectados,presentes,ausentes)
         else:
             driver.close()
+            op=0
             print("Saindo...")
 
 if __name__ == "__main__":
@@ -224,9 +238,12 @@ if __name__ == "__main__":
         gmailId = dados.get("email")
         passWord = dados.get("password")
         meet = dados.get("meet")
-        menu(driver,gmailId,passWord,meet)
+        try:
+            menu(driver,gmailId,passWord,meet)
+        except:
+            print("Failed menu")
     except:
-        print("Failed to load login.json")
+        print("Failed to load auth.json")
 
 
     
