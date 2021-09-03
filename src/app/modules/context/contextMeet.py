@@ -29,3 +29,8 @@ class ContextMeet():
         resultado = self.strategy.chamada()
         self.strategy.mensagem(terminando)
         return resultado
+    def fechar(self)->None:
+        self.strategy.fechar()
+    def abrir(self)->None:
+        self.strategy.iniciar()
+    

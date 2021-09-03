@@ -10,3 +10,9 @@ class StrategyMeet(ABC):
     @abstractmethod
     def chamada(self) -> dict:
         pass
+    @abstractmethod
+    def iniciar(self) -> None:
+        pass
+    @abstractmethod
+    def fechar(self) -> None:
+        pass

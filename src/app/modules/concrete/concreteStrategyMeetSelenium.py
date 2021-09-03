@@ -1,4 +1,3 @@
-from logging import exception
 import time
 
 from selenium.webdriver.common.keys import Keys
@@ -10,20 +9,19 @@ from modules.strategy.strategyMeet import StrategyMeet
 
 class ConcreteStrategyMeetSelenium(StrategyMeet):
     def __init__(self) -> None:
-        self.driver:WebDriver = Selenium().start()
+        self.driver:WebDriver
 
-    def start(self)-> None:
+    def iniciar(self)-> None:
         self.driver = Selenium().start()
         pass
 
-    def stop(self)-> None:
+    def fechar(self)-> None:
         try:
             self.driver.close()
         except Exception as e:
             print("Failed to stop: ", e.args)
         pass
     
-
     def mensagem(self,text: str) -> None:
         try:
             time.sleep(3)
