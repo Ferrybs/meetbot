@@ -22,15 +22,25 @@ class ContextMeet():
 
 
     def fazer_chamada(self) -> dict:
-        inciando = "Iniciando chamada: Digite qualquer coisa para contar presença!"
-        terminando = "Chamada finalizada!"
-        self.strategy.mensagem(inciando)
-        input("Digite qualquer coisa para finalizar...")
-        resultado = self.strategy.chamada()
-        self.strategy.mensagem(terminando)
-        return resultado
-    def fechar(self)->None:
-        self.strategy.fechar()
-    def abrir(self)->None:
-        self.strategy.iniciar()
+        try:
+            self.strategy.iniciar()
+            inciando = "Iniciando chamada: Digite qualquer coisa para contar presença!"
+            terminando = "Chamada finalizada!"
+            self.strategy.mensagem(inciando)
+            input("Digite qualquer coisa para finalizar...")
+            resultado = self.strategy.chamada()
+            self.strategy.mensagem(terminando)
+            self.strategy.fechar()
+            return resultado
+        except Exception as e:
+            print("Failed to fazer chamada: ", e.args)
+
+    def mensagem(self,text: str) ->None:
+        try:
+            self.strategy.iniciar()
+            self.strategy.mensagem("Chamada post: "+ text)
+            self.strategy.fechar()
+        except Exception as e:
+            print("Failed to mensagem: ", e.args)
+        pass
     
