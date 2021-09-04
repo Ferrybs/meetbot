@@ -21,7 +21,7 @@ class ContextMeet():
         self.strategy = strategy
 
 
-    def fazer_chamada(self) -> str:
+    def fazer_chamada(self) -> dict:
         try:
             self.strategy.iniciar()
             inciando = "Iniciando chamada: Digite qualquer coisa para contar presença!"
@@ -29,10 +29,9 @@ class ContextMeet():
             self.strategy.mensagem(inciando)
             input("Digite qualquer coisa para finalizar...")
             dados = self.strategy.chamada()
-            resultado = '\n'.join(list(dados.keys()))
             self.strategy.mensagem(terminando)
             self.strategy.fechar()
-            return resultado
+            return dados
         except Exception as e:
             print("Failed to fazer chamada: ", e.args)
 
