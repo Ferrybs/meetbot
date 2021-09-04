@@ -34,6 +34,8 @@
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[forks-shield]: https://img.shields.io/github/forks/Ferrybs/meetbot.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
 [stars-shield]: https://img.shields.io/github/stars/Ferrybs/meetbot.svg?style=for-the-badge
 [stars-url]: https://github.com/Ferrybs/meetbot/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Ferrybs/meetbot.svg?style=for-the-badge
