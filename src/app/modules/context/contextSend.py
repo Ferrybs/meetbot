@@ -19,10 +19,9 @@ class ContextSend():
         self._strategy = strategy
         return
 
-    def enviar(self, presentes: dict) -> str:
+    def enviar(self, presentes: str) -> str:
         try:
-            text = '\n'.join(list(presentes.keys()))
-            return self.strategy.send(text)
+            return self.strategy.send(presentes)
         except Exception as e:
             print("Failed to post: ", e.args)
         pass

@@ -21,14 +21,15 @@ class ContextMeet():
         self.strategy = strategy
 
 
-    def fazer_chamada(self) -> dict:
+    def fazer_chamada(self) -> str:
         try:
             self.strategy.iniciar()
             inciando = "Iniciando chamada: Digite qualquer coisa para contar presença!"
             terminando = "Chamada finalizada!"
             self.strategy.mensagem(inciando)
             input("Digite qualquer coisa para finalizar...")
-            resultado = self.strategy.chamada()
+            dados = self.strategy.chamada()
+            resultado = '\n'.join(list(dados.keys()))
             self.strategy.mensagem(terminando)
             self.strategy.fechar()
             return resultado

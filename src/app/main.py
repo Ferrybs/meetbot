@@ -6,8 +6,9 @@ from modules.context.contextMeet import ContextMeet
 
 if __name__ == "__main__":
 
-    #context_meet = ContextMeet(ConcreteStrategyMeetSelenium())
-    #res = context_meet.fazer_chamada()
+    context_meet = ContextMeet(ConcreteStrategyMeetSelenium())
+    res = context_meet.fazer_chamada()
     context_send = ContextSend(ConcreteStrategySendSelenium())
-    link = context_send.enviar({'Fleipe aAraj':1,'pacoge':1})
+    link = context_send.enviar(res)
+    context_meet.mensagem(link)
     print(link)
