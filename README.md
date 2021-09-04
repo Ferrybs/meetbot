@@ -50,6 +50,7 @@
       </ul>
     </li>
     <li><a href="#conhecimentos">Conhecimentos</a></li>
+    <li><a href="#licença">Licença</a></li>
   </ol>
 </details>
 
@@ -94,7 +95,7 @@ Essa é a lista de comandos para instalar as dependências.
     Separados por `, `, em uma unica linha. Ou mudar o modo no src.
 
 <!-- LICENSE -->
-## License
+## Licença
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
