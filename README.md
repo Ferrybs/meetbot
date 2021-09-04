@@ -32,6 +32,77 @@
   </p>
 </p>
 
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Tabela de Conteúdos</summary>
+  <ol>
+    <li>
+      <a href="#sobre">Sobre</a>
+      <ul>
+        <li><a href="#dependências">Dependências</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#começando">Começando</a>
+      <ul>
+        <li><a href="#pré-requisitos">Pré-requisitos</a></li>
+        <li><a href="#installation">Instalação</a></li>
+      </ul>
+    </li>
+    <li><a href="#conhecimentos">Conhecimentos</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## Sobre
+
+Esse é um bot para fins de de estudo. Usando um web driver, acessa uma sala do google meet. Anuncia o início de uma chamada até o cliente para. Coleta o nomes dos usuários que responderam a chamada e faz uma lista de alunos ausentes. Essa lista é postada em uma site que compartilha arquivos em txt. 
+
+### Dependências
+
+Esses foram os frameworks usados no projeto.
+* [Selenium](https://selenium-python.readthedocs.io/)
+
+
+<!-- GETTING STARTED -->
+## Começando
+
+Esse é um exmplo de como instalar esse projeto.
+
+### Pré-requisitos
+
+Essa é a lista de comandos para instalar as dependências.
+* pip
+  ```sh
+  pip install selenium
+  ```
+### Instalação
+
+1. Clone o repo
+   ```sh
+   git clone https://github.com/Ferrybs/meetbot
+   ```
+2. Criar um arquivo em `docs/auth.json`
+   ```JS
+   {
+    "email": "exemplo@gmail.com",
+    "password": "senha",
+    "meet":"https://meet.google.com/exemplo"
+    }   
+   ```
+3. Criar um arquivo em  `docs/alunos.txt` com os nomes dos alunos.
+    Separados por `, `, em uma unica linha. Ou mudar o modo no src.
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Conhecimentos
+* [Selenium](https://selenium-python.readthedocs.io/)
+* [python](https://docs.python.org/)
+
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [forks-shield]: https://img.shields.io/github/forks/Ferrybs/meetbot.svg?style=for-the-badge
