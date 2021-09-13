@@ -1,0 +1,6 @@
+docs/auth.json
+docs/alunos.txt
+.vscode/
+__pycache__/
+selenium/
+teste.py
