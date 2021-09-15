@@ -34,7 +34,6 @@ class ConcreteStrategySendSelenium(StrategySend):
                 time.sleep(5)
                 text = self.driver.find_element_by_class_name("info").text[15:22]
                 text = text.strip()
-                print(text)
                 if(text == "error"):
                     i= i -1
                 else:
