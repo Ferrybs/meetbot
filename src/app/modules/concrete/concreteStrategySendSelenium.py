@@ -33,7 +33,7 @@ class ConcreteStrategySendSelenium(StrategySend):
                 self.driver.find_elements_by_class_name("btnStyle")[1].click()
                 time.sleep(5)
                 result = self.driver.find_element_by_class_name("info").text[15:22]
-                result = text.strip()
+                result = result.strip()
                 if(result == "error"):
                     i= i -1
                 else:
