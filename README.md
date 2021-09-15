@@ -92,7 +92,7 @@ Essa é a lista de comandos para instalar as dependências.
     }   
    ```
 3. Criar um arquivo em  `docs/alunos.txt` com os nomes dos alunos.
-    Separados por `, `, em uma unica linha. Ou mudar o modo no src.
+    Separados por `\n`, em uma unica linha. Ou mudar o modo no src.
 
 <!-- LICENSE -->
 ## Licença
