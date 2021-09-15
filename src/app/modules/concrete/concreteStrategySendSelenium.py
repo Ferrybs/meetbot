@@ -32,14 +32,14 @@ class ConcreteStrategySendSelenium(StrategySend):
                 time.sleep(2)
                 self.driver.find_elements_by_class_name("btnStyle")[1].click()
                 time.sleep(5)
-                text = self.driver.find_element_by_class_name("info").text[15:22]
-                text = text.strip()
-                if(text == "error"):
+                result = self.driver.find_element_by_class_name("info").text[15:22]
+                result = text.strip()
+                if(result == "error"):
                     i= i -1
                 else:
                     i = 1
             
-            link = "https://www.heypasteit.com/clip/" + text
+            link = "https://www.heypasteit.com/clip/" + result
             self.fechar()
             return link
         except Exception as e:
