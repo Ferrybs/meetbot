@@ -21,6 +21,7 @@ class ContextSend():
 
     def enviar(self, presentes: list) -> str:
         try:
+            presentes.sort()
             resultado = '\n'.join(presentes)
             return self.strategy.send(resultado)
         except Exception as e:
