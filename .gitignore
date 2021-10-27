@@ -1,5 +1,6 @@
 docs/auth.json
 docs/alunos.txt
+docs/alunosRedes.txt
 .vscode/
 __pycache__/
 selenium/

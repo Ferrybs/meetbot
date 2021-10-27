@@ -14,6 +14,7 @@ def rambim():
     presentes = context_meet.fazer_chamada()
     ausentes = list(set(alunos.keys()) - set(presentes.keys()))
     link = context_send.enviar(ausentes)
+    print(link)
     context_meet.mensagem(link)
 
 def menu():
