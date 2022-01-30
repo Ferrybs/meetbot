@@ -1,5 +1,5 @@
 import time
-from modules.selenium.selenium import Selenium
+from modules.selenium.seleniumSetup import SeleniumSetup
 
 from modules.strategy.strategySend import StrategySend
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -11,7 +11,7 @@ class ConcreteStrategySendSelenium(StrategySend):
         self.drive:WebDriver
     
     def iniciar(self) -> None:
-        self.driver = Selenium().set_driver()
+        self.driver = SeleniumSetup().set_driver()
 
     def fechar(self) -> None:
         self.driver.close()

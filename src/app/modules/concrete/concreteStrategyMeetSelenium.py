@@ -2,8 +2,9 @@ import time
 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.webdriver import WebDriver
+from modules.selenium.seleniumSetup import SeleniumSetup
 
-from modules.selenium.selenium import Selenium
+
 from modules.strategy.strategyMeet import StrategyMeet
 
 
@@ -12,7 +13,7 @@ class ConcreteStrategyMeetSelenium(StrategyMeet):
         self.driver:WebDriver
 
     def iniciar(self)-> None:
-        self.driver = Selenium().start()
+        self.driver = SeleniumSetup().start()
         pass
 
     def fechar(self)-> None:

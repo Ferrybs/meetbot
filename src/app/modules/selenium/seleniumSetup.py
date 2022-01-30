@@ -2,27 +2,23 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
+from modules.concrete.concreteStrategyReadWin import ConcreteStrategyReadWin
 from modules.concrete.concreteStrategyRead import ConcreteStrategyRead
 
 from modules.context.contextRead import ContextRead
 
 
-class Selenium():
+class SeleniumSetup():
     """
     """
     def __init__(self) -> None:
         self.driver: WebDriver
-        self.context_read: ContextRead= ContextRead(ConcreteStrategyRead())
-        self.__gmailId: str
-        self.__passWord: str
+        self.context_read: ContextRead= ContextRead(ConcreteStrategyReadWin())
         self.meet: str
+        self.path: str
 
     def start(self)->WebDriver:
         try:
-            auth = self.context_read.read()
-            self.__gmailId = auth.get("email")
-            self.__passWord = auth.get("password")
-            self.meet = auth.get("meet")
             self.driver = self.set_driver()
             self.login()
             self.joinMeet()
@@ -39,13 +35,19 @@ class Selenium():
 
     def set_driver(self) -> WebDriver:
         driver:WebDriver
+        auth = self.context_read.read()
+        self.meet = auth.get("meet")
+        self.path = auth.get("path")
         try:
             options = webdriver.ChromeOptions()
             options.add_argument("user-data-dir=selenium") 
             options.add_argument("--disable-infobars")
-            options.add_argument("--window-size=1920,1080")
+            options.add_argument("--remote-debugging-port=9222")  # this
+            options.add_argument('--start-maximized')
             options.add_argument("--mute-audio")
+            options.add_argument("--user-data-dir="+ self.path)
 
+            options.add_experimental_option('excludeSwitches', ['enable-logging'])
             options.add_experimental_option("prefs", { \
             "profile.default_content_setting_values.media_stream_mic": 2,     # 1:allow, 2:block
             "profile.default_content_setting_values.media_stream_camera": 2,
@@ -59,23 +61,10 @@ class Selenium():
 
     def login(self)->None:
         try:
-            self.driver.get(r'https://accounts.google.com/signin/v2/identifier?continue='+\
-            'https%3A%2F%2Fmail.google.com%2Fmail%2F&service=mail&sacu=1&rip=1'+\
-            '&flowName=GlifWebSignIn&flowEntry = ServiceLogin')
+            self.driver.get(r'https://google.com')
             self.driver.implicitly_wait(5)
 
-            loginBox = self.driver.find_element_by_xpath('//*[@id ="identifierId"]')
-            loginBox.send_keys(self.__gmailId)
-        
-            nextButton = self.driver.find_elements_by_xpath('//*[@id ="identifierNext"]')
-            nextButton[0].click()
-        
-            passWordBox = self.driver.find_element_by_xpath(
-                '//*[@id ="password"]/div[1]/div / div[1]/input')
-            passWordBox.send_keys(self.__passWord)
-        
-            nextButton = self.driver.find_elements_by_xpath('//*[@id ="passwordNext"]')
-            nextButton[0].click()
+            op = input("Esperando login...")
     
             print('Login Successful...!!')
 
@@ -91,6 +80,8 @@ class Selenium():
     
     def joinMeet(self)->None:
         try:
+            auth = self.context_read.read()
+            self.meet = auth.get("meet")
             time.sleep(2)
             self.driver.get(self.meet)
             print("Get Successful...:" + self.meet)
@@ -99,7 +90,9 @@ class Selenium():
         
         try:
             self.driver.implicitly_wait(3)
-            element = self.driver.find_element_by_class_name('CwaK9')
+            element = self.driver.find_element_by_xpath("//div[@class='I5fjHe wb61gb']")
+            self.driver.execute_script("arguments[0].click();", element)
+            element = self.driver.find_element_by_xpath("(//div[@class='I5fjHe wb61gb'])[2]")
             self.driver.execute_script("arguments[0].click();", element)
             print("Click Successful...")
         except Exception as e:

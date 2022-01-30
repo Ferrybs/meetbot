@@ -1,3 +1,4 @@
+from modules.concrete.concreteStrategyReadAlunosWin import ConcreteStrategyReadAlunoWin
 from modules.concrete.concreteStrategyReadAlunos import ConcreteStrategyReadAluno
 from modules.context.contextRead import ContextRead
 from modules.concrete.concreteStrategySendSelenium import ConcreteStrategySendSelenium
@@ -9,12 +10,13 @@ from modules.context.contextMeet import ContextMeet
 def rambim():
     context_meet = ContextMeet(ConcreteStrategyMeetSelenium())
     context_send = ContextSend(ConcreteStrategySendSelenium())
-    context_read = ContextRead(ConcreteStrategyReadAluno())
+    context_read = ContextRead(ConcreteStrategyReadAlunoWin())
     alunos = context_read.read()
     presentes = context_meet.fazer_chamada()
+    print("Presentes: ", presentes)
     ausentes = list(set(alunos.keys()) - set(presentes.keys()))
     link = context_send.enviar(ausentes)
-    print(link)
+    print('Link ausentes: ',link)
     context_meet.mensagem(link)
 
 def menu():

@@ -49,6 +49,12 @@
         <li><a href="#installation">Instalação</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#Como-Usar">Como Usar</a>
+      <ul>
+        <li><a href="#Iniciar">I</a></li>
+      </ul>
+    </li>
     <li><a href="#conhecimentos">Conhecimentos</a></li>
     <li><a href="#licença">Licença</a></li>
   </ol>
@@ -68,7 +74,7 @@ Esses foram os frameworks usados no projeto.
 <!-- GETTING STARTED -->
 ## Começando
 
-Esse é um exmplo de como instalar esse projeto.
+Esse é um tutorial de como instalar esse projeto.
 
 ### Pré-requisitos
 
@@ -76,6 +82,7 @@ Essa é a lista de comandos para instalar as dependências.
 * pip
   ```sh
   pip install selenium
+  pip install webdriver-manager
   ```
 ### Instalação
 
@@ -94,6 +101,16 @@ Essa é a lista de comandos para instalar as dependências.
 3. Criar um arquivo em  `docs/alunos.txt` com os nomes dos alunos.
     Separados por `\n`, em uma unica linha. Ou mudar o modo no src.
 
+
+## Como-Usar
+
+Esse é um totorial de como usar o bot.
+
+### Iniciar
+
+1. Executar o aquivo `src\app\main.py` como adminstrador.
+2. O arquivo main contem uma função menu como apenas uma opção. Essa opção inicia o Selenium entra em uma sala do google meet usando as credenciais especificadas aquivo json em `docs/auth.json`. Apos o login, ele pede permissão para entrar na sala e inicia uma chamada usando o arquivo `docs/alunos.txt` como referencia de alunos. Apos o usuario determinar o fim da chamad faz a diferença desse arquivo de aluno e os que responderam a chamada no chat. Envia esse para um site que salva texto e retorna para a chamada onde envia o link do site com o nome dos alunos que não responderam a chamada. 
+
 <!-- LICENSE -->
 ## Licença
 
@@ -101,7 +118,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Conhecimentos
 * [Selenium](https://selenium-python.readthedocs.io/)
-* [python](https://docs.python.org/)
+* [Python](https://docs.python.org/)
+* [Design Pattern Strategy](https://refactoring.guru/pt-br/design-patterns/strategy)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
