@@ -93,9 +93,8 @@ Essa é a lista de comandos para instalar as dependências.
 2. Criar um arquivo em `docs/auth.json`
    ```JS
    {
-    "email": "exemplo@gmail.com",
-    "password": "senha",
-    "meet":"https://meet.google.com/exemplo"
+    "meet":"https://meet.google.com/exemplo",
+    "path": "diretorio/onde/se/encontra/google-chrome"
     }   
    ```
 3. Criar um arquivo em  `docs/alunos.txt` com os nomes dos alunos.
