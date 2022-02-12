@@ -13,13 +13,13 @@ class SeleniumSetup():
     """
     def __init__(self) -> None:
         self.driver: WebDriver
-        self.context_read: ContextRead= ContextRead(ConcreteStrategyReadWin())
+        self.context_read: ContextRead= ContextRead(ConcreteStrategyRead())
         self.meet: str
         self.path: str
 
     def start(self)->WebDriver:
         try:
-            self.driver = self.set_driver()
+            self.set_driver()
             self.login()
             self.joinMeet()
             return self.driver
@@ -40,7 +40,6 @@ class SeleniumSetup():
         self.path = auth.get("path")
         try:
             options = webdriver.ChromeOptions()
-            options.add_argument("user-data-dir=selenium") 
             options.add_argument("--disable-infobars")
             options.add_argument("--remote-debugging-port=9222")  # this
             options.add_argument('--start-maximized')
@@ -53,29 +52,29 @@ class SeleniumSetup():
             "profile.default_content_setting_values.media_stream_camera": 2,
             "profile.default_content_setting_values.notifications": 2
             })
+
             driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
         except Exception as e:
             print("Faied to start WebDriver: ",e.args)
             
-        return driver
+        self.driver = driver
 
     def login(self)->None:
         try:
             self.driver.get(r'https://google.com')
             self.driver.implicitly_wait(5)
 
-            op = input("Esperando login...")
-    
-            print('Login Successful...!!')
-
-        except Exception as e:
             cookies = self.driver.get_cookies()
-            key = "mail.google.com"
+            key = "google"
             for cookie in cookies:
-                if cookie['domain'] == key: 
+                #print(cookie)
+                if key in cookie['domain']: 
                     print('Login Successful...!!')
                     return
-
+            
+            op = input("Esperando login...")
+            print('Login Successful...!!')
+        except Exception as e:
             print("Failed login: ",e.args)
     
     def joinMeet(self)->None:
@@ -85,6 +84,7 @@ class SeleniumSetup():
             time.sleep(2)
             self.driver.get(self.meet)
             print("Get Successful...:" + self.meet)
+            time.sleep(2)
         except Exception as e:
             print("Join Failed: ",e.args)
         

@@ -11,17 +11,14 @@ class ConcreteStrategySendSelenium(StrategySend):
         self.drive:WebDriver
     
     def iniciar(self) -> None:
-        self.driver = SeleniumSetup().set_driver()
+        setup = SeleniumSetup()
+        setup.set_driver()
+        self.driver = setup.driver
 
     def fechar(self) -> None:
         self.driver.close()
 
     def send(self, text: str)-> str:
-        try:
-            time.sleep(1)
-            self.iniciar()
-        except Exception as e:
-            print("Failed to open: ", e.args)
         try:
             i = 4
             while(i!=1):
@@ -39,8 +36,7 @@ class ConcreteStrategySendSelenium(StrategySend):
                 else:
                     i = 1
             
-            link = "https://www.heypasteit.com/clip/" + result
-            self.fechar()
+            link = "www.heypasteit.com clip " + result
             return link
         except Exception as e:
             print("Failed to post:",e.args)

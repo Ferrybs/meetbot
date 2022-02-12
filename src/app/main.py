@@ -10,13 +10,15 @@ from modules.context.contextMeet import ContextMeet
 def rambim():
     context_meet = ContextMeet(ConcreteStrategyMeetSelenium())
     context_send = ContextSend(ConcreteStrategySendSelenium())
-    context_read = ContextRead(ConcreteStrategyReadAlunoWin())
+    context_read = ContextRead(ConcreteStrategyReadAluno())
     alunos = context_read.read()
     presentes = context_meet.fazer_chamada()
     print("Presentes: ", presentes)
     ausentes = list(set(alunos.keys()) - set(presentes.keys()))
     link = context_send.enviar(ausentes)
+    print("=====================")
     print('Link ausentes: ',link)
+    print("=====================")
     context_meet.mensagem(link)
 
 def menu():

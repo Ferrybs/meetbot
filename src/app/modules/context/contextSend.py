@@ -21,9 +21,12 @@ class ContextSend():
 
     def enviar(self, presentes: list) -> str:
         try:
+            self.strategy.iniciar()
             presentes.sort()
             resultado = '\n'.join(presentes)
-            return self.strategy.send(resultado)
+            link = self.strategy.send(resultado)
+            self.strategy.fechar()
+            return link
         except Exception as e:
             print("Failed to post: ", e.args)
         pass
